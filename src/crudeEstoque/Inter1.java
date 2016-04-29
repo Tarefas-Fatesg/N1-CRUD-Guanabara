@@ -5,6 +5,8 @@
  */
 package crudeEstoque;
 
+import javax.swing.JTextField;
+
 /**
  *
  * @author kai
@@ -41,59 +43,139 @@ public class Inter1 extends javax.swing.JFrame {
         jTextFieldV_Compra = new javax.swing.JTextField();
         jTextFieldQtd_min_estoque = new javax.swing.JTextField();
         jTextFieldCodigo = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButtonInsert = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
 
         jLabel1.setText("Nome");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 14, 27, 14);
 
         jLabel2.setText("Codigo");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(10, 40, 33, 14);
 
         jLabel3.setText("Quantidade no estoque");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(10, 66, 113, 14);
 
         jLabel4.setText("Unidade de medida");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(10, 92, 91, 14);
 
         jLabel5.setText("Valor Venda");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(10, 118, 57, 14);
 
         jLabel6.setText("Valor Compra");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(10, 144, 64, 14);
 
         jLabel7.setText("Quantidade Minima No Estoque");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(10, 170, 149, 14);
-        getContentPane().add(jTextFieldNome);
-        jTextFieldNome.setBounds(55, 11, 228, 20);
-        getContentPane().add(jTextFieldQtd_Estoque);
-        jTextFieldQtd_Estoque.setBounds(133, 63, 54, 20);
-        getContentPane().add(jTextFieldUn_Medida);
-        jTextFieldUn_Medida.setBounds(105, 89, 6, 20);
-        getContentPane().add(jTextFieldV_Venda);
-        jTextFieldV_Venda.setBounds(105, 115, 6, 20);
-        getContentPane().add(jTextFieldV_Compra);
-        jTextFieldV_Compra.setBounds(105, 141, 6, 20);
-        getContentPane().add(jTextFieldQtd_min_estoque);
-        jTextFieldQtd_min_estoque.setBounds(163, 167, 6, 20);
-        getContentPane().add(jTextFieldCodigo);
-        jTextFieldCodigo.setBounds(53, 37, 52, 20);
 
-        jButton1.setText("Açao");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(20, 270, 57, 23);
+        jButtonInsert.setText("Inserir");
+        jButtonInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel3)
+                        .addGap(10, 10, 10)
+                        .addComponent(jTextFieldQtd_Estoque, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel4)
+                        .addGap(4, 4, 4)
+                        .addComponent(jTextFieldUn_Medida, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel5)
+                        .addGap(38, 38, 38)
+                        .addComponent(jTextFieldV_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel6)
+                        .addGap(31, 31, 31)
+                        .addComponent(jTextFieldV_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel7)
+                        .addGap(4, 4, 4)
+                        .addComponent(jTextFieldQtd_min_estoque, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jButtonInsert)))
+                .addGap(117, 117, 117))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel1))
+                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel3))
+                    .addComponent(jTextFieldQtd_Estoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel4))
+                    .addComponent(jTextFieldUn_Medida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel5))
+                    .addComponent(jTextFieldV_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel6))
+                    .addComponent(jTextFieldV_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel7))
+                    .addComponent(jTextFieldQtd_min_estoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(83, 83, 83)
+                .addComponent(jButtonInsert))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
+         Produto p = new Produto();
+                ProdutoDAO pDAO = new ProdutoDAO();
+               p.setNome(jTextFieldNome.getText());
+               p.setCodigo(Integer.parseInt(jTextFieldCodigo.getText()));
+               p.setQtdEstoque(Integer.parseInt(jTextFieldQtd_Estoque.getText()));
+               p.setQtdEstoqueMin(Integer.parseInt(jTextFieldQtd_min_estoque.getText()));
+               p.setUnidadeDmedida(jTextFieldUn_Medida.getText());
+               p.setValorCompra(Integer.parseInt(jTextFieldV_Compra.getText()));
+               p.setValorVenda(Integer.parseInt(jTextFieldV_Venda.getText()));
+               pDAO.Inserir(p);
+    }//GEN-LAST:event_jButtonInsertActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,12 +208,16 @@ public class Inter1 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Inter1().setVisible(true);
+              
+                
+                
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonInsert;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

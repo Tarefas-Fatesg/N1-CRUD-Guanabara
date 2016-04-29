@@ -19,13 +19,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author GrupoIntegrador
  */
 public class ProdutoDAO {
-    private Connection connection;
+    private Connection connection = null;
 
 	public ProdutoDAO() {
 		connection = Conexao.getConexao();
@@ -33,21 +34,23 @@ public class ProdutoDAO {
 
 	public void Inserir(Produto produto) {
 		try {
-			PreparedStatement preparedStatement = connection
+                    
+			PreparedStatement ps = connection
 					.prepareStatement("insert into produto(nome, codigo, qtd_estoque, und_med, valor_venda, valor_compra, qtd_estoque_min) values (?, ?, ?, ?, ?, ?, ? )");
 			// Parameters start with 1
 			
 			
-                        preparedStatement.setString(1, produto.getNome());
-                        preparedStatement.setInt(2, produto.getCodigo());
-                        preparedStatement.setInt(3, produto.getQtdEstoque());
-                        preparedStatement.setString(4, produto.getUnidadeDmedida());
-			preparedStatement.setInt(5, produto.getValorVenda());
-                        preparedStatement.setInt(6, produto.getValorCompra());
-                        preparedStatement.setInt(5, produto.getQtdEstoqueMin());
+                        ps.setString(1, produto.getNome());
+                        ps.setInt(2, produto.getCodigo());
+                        ps.setInt(3, produto.getQtdEstoque());
+                        ps.setString(4, produto.getUnidadeDmedida());
+			ps.setInt(5, produto.getValorVenda());
+                        ps.setInt(6, produto.getValorCompra());
+                        ps.setInt(7, produto.getQtdEstoqueMin());
                         
                         
-                        preparedStatement.executeUpdate();
+                        ps.executeUpdate();
+                        JOptionPane.showMessageDialog(null,"Foi inserido com sucesso!");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
