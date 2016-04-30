@@ -10,12 +10,17 @@ package crudeEstoque;
  * @author kai
  */
 public class Listar extends javax.swing.JFrame {
-
+    ProdutoTableModel modelo;
     /**
      * Creates new form Listar
      */
     public Listar() {
+       super("Titulo");
         initComponents();
+        setLocationRelativeTo(null); //janela fica no centro da tela ao ficar visível...
+        //Adicionando os modelos das tabelas
+        modelo = new ProdutoTableModel();
+        jTableControle.setModel(modelo);
     }
 
     /**
@@ -28,7 +33,7 @@ public class Listar extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableControle = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -39,7 +44,7 @@ public class Listar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableControle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -55,7 +60,7 @@ public class Listar extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableControle);
 
         jButton1.setText("Alterar");
 
@@ -152,6 +157,6 @@ public class Listar extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableControle;
     // End of variables declaration//GEN-END:variables
 }
