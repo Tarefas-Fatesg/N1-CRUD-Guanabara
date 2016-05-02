@@ -8,30 +8,36 @@ package crudeEstoque;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author kai
  */
 public class ExibirNaTabela extends javax.swing.JFrame {
+
     ProdutoTableModel modelo;
     private JTable tabela;
     private JScrollPane scrollPainel;
-    
-     
+
     public ExibirNaTabela() {
-      
-        ProdutoDAO p =new ProdutoDAO();
+        exibenatabela();
+
+        initComponents();
+    }
+
+    private void exibenatabela() {
+        ProdutoDAO p = new ProdutoDAO();
         ProdutoTableModel model = new ProdutoTableModel(p.ConsultarTodos());
-        
+
         //instancia a tabela já com o model como argumento
         this.tabela = new JTable(model);
         this.scrollPainel = new JScrollPane(tabela);
-        
+
         this.add(scrollPainel);
         this.pack();
-   
-        initComponents();
+
     }
 
     /**
@@ -44,9 +50,9 @@ public class ExibirNaTabela extends javax.swing.JFrame {
     private void initComponents() {
 
         jButtonAlterar = new javax.swing.JButton();
-        jButtonListar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        frames = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,13 +60,6 @@ public class ExibirNaTabela extends javax.swing.JFrame {
         jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAlterarActionPerformed(evt);
-            }
-        });
-
-        jButtonListar.setText("Recarregar");
-        jButtonListar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonListarActionPerformed(evt);
             }
         });
 
@@ -84,26 +83,25 @@ public class ExibirNaTabela extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 540, Short.MAX_VALUE)
-                        .addComponent(jButton4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonExcluir))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonAlterar)))
+                        .addComponent(jButtonAlterar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonExcluir, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButtonListar))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(frames, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(275, Short.MAX_VALUE)
-                .addComponent(jButtonListar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(frames, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
                 .addComponent(jButtonAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonExcluir)
@@ -115,63 +113,52 @@ public class ExibirNaTabela extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
-ProdutoTableModel c = new ProdutoTableModel();
-
- ProdutoDAO p =new ProdutoDAO();
-
- c.limpar();
- ProdutoTableModel model = new ProdutoTableModel(p.ConsultarTodos());
-
-
-
-    }//GEN-LAST:event_jButtonListarActionPerformed
-
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-int row = tabela.getSelectedRow();
-int colun = tabela.getSelectedColumn();
-Produto p = new Produto();
-ProdutoDAO process = new ProdutoDAO();
+        int row = tabela.getSelectedRow();
+        int colun = tabela.getSelectedColumn();
+        Produto p = new Produto();
+        ProdutoDAO process = new ProdutoDAO();
 
-p.setCodigo(Integer.parseInt(tabela.getValueAt(row, 0).toString()));
-p.setNome(tabela.getValueAt(row, 1).toString());
-p.setQtdEstoque(Integer.parseInt(tabela.getValueAt(row, 2).toString()));
-p.setUnidadeDmedida(tabela.getValueAt(row, 3).toString());
-p.setValorVenda(Integer.parseInt(tabela.getValueAt(row, 4).toString()));
-p.setValorCompra(Integer.parseInt(tabela.getValueAt(row, 5).toString()));
-p.setQtdEstoqueMin(Integer.parseInt(tabela.getValueAt(row, 6).toString()));
-process.Alterar(p);
-
+        p.setCodigo(Integer.parseInt(tabela.getValueAt(row, 0).toString()));
+        p.setNome(tabela.getValueAt(row, 1).toString());
+        p.setQtdEstoque(Integer.parseInt(tabela.getValueAt(row, 2).toString()));
+        p.setUnidadeDmedida(tabela.getValueAt(row, 3).toString());
+        p.setValorVenda(Integer.parseInt(tabela.getValueAt(row, 4).toString()));
+        p.setValorCompra(Integer.parseInt(tabela.getValueAt(row, 5).toString()));
+        p.setQtdEstoqueMin(Integer.parseInt(tabela.getValueAt(row, 6).toString()));
+        process.Alterar(p);
+        Inter1 janela = new Inter1();
+        janela.setVisible(true);  
+        this.dispose();
 
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-int row = tabela.getSelectedRow();
-int colun = tabela.getSelectedColumn();
-Produto p = new Produto();
-ProdutoDAO process = new ProdutoDAO();
+        int row = tabela.getSelectedRow();
+        int colun = tabela.getSelectedColumn();
+        Produto p = new Produto();
+        ProdutoDAO process = new ProdutoDAO();
 
-p.setCodigo(Integer.parseInt(tabela.getValueAt(row, 0).toString()));
+        p.setCodigo(Integer.parseInt(tabela.getValueAt(row, 0).toString()));
 
-process.Remover(p.codigo);
+        process.Remover(p.codigo);
 
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-Inter1 janela = new Inter1();
-this.dispose();
-janela.setVisible(true);        // TODO add your handling code here:
+        Inter1 janela = new Inter1();
+        this.dispose();
+        janela.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane frames;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonExcluir;
-    private javax.swing.JButton jButtonListar;
     // End of variables declaration//GEN-END:variables
 }

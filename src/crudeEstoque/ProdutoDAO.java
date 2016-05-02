@@ -56,11 +56,11 @@ public class ProdutoDAO {
 
     public void Remover(int codigo) {
         try {
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("delete from produto where codigo=?");
+            PreparedStatement ps = connection
+                    .prepareStatement("delete from produto where codigo= ? ");
             // Parameters start with 1
-            preparedStatement.setInt(1, codigo);
-            preparedStatement.executeUpdate();
+            ps.setString(1, String.valueOf(codigo));
+            ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Produto com codigo" + codigo + "foi deletado com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,13 +74,13 @@ public class ProdutoDAO {
                             + "where codigo=?");
             // Parameters start with 1
             preparedStatement.setString(1, produto.getNome());
-            preparedStatement.setInt(2, produto.getCodigo());
+            preparedStatement.setString(2, produto.getCodigo()+"");
             preparedStatement.setInt(3, produto.getQtdEstoque());
             preparedStatement.setString(4, produto.getUnidadeDmedida());
             preparedStatement.setInt(5, produto.getValorVenda());
             preparedStatement.setInt(6, produto.getValorCompra());
-            preparedStatement.setInt(5, produto.getQtdEstoqueMin());
-            preparedStatement.setInt(7, produto.getCodigo());
+            preparedStatement.setInt(7, produto.getQtdEstoqueMin());
+            preparedStatement.setString(8, produto.getCodigo()+"");
             preparedStatement.executeUpdate();
 
             JOptionPane.showMessageDialog(null, produto.nome + "foi alterado com sucesso!");
