@@ -20,6 +20,22 @@ public class ProdutoTableModel extends AbstractTableModel {
     private String[] colunas = new String[]{
         //---------"Nome", "Endereço", "Telefone"};
           "Codigo", "Nome", "Qtd estoque","Und Medida","Valor venda","Valor compra","Qtd estoque min"};
+          
+            private ArrayList<Produto> produto;
+    private final int COLUNA_CODIGO = 0;
+    private final int COLUNA_NOME = 1;
+    private final int COLUNA_QTDESTOQUE = 2;
+    private final int COLUNA_UNDMEDIDA = 3;
+    private final int COLUNA_VALORVENDA = 4;
+    private final int COLUNA_VALORCOMPRA = 5;
+    private final int COLUNA_QTDESTOQUEMIN = 6;
+    
+    public ProdutoTableModel(ArrayList<Produto> produto) {
+        this.produto = produto;
+    }
+            
+    
+    
     /* Cria um ProdutoTableModel vazio. */
 
     public ProdutoTableModel() {
@@ -142,7 +158,7 @@ public class ProdutoTableModel extends AbstractTableModel {
     ;
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return false;
+        return true;
     }
 
     public Produto getProduto(int indiceLinha) {
